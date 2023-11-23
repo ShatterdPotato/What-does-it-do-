@@ -5,17 +5,22 @@ import os
 WIDTH, HEIGHT = 900, 600
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("PLACEHOLDER FOR CAPTIONS LATER")
+
 FPS = 60
 WHITE = (255, 255, 255)
 
 #Characters here
+player_width, player_height = 55,100
 derp_dude = pygame.image.load(os.path.join('Assets', 'derp_dude.png'))
 rage_dude = pygame.image.load(os.path.join('Assets', 'rage_dude.png'))
+derp_dude_rect = pygame.Rect(100, 300, player_width, player_height)
+rage_dude_rect = pygame.Rect(100, 300, player_width, player_height)
+
 
 def draw_update():
     WIN.fill(WHITE)
-    import_player(derp_dude, WIN)
-    import_player(rage_dude, WIN)
+    import_player(derp_dude, WIN, derp_dude_rect)
+    import_player(rage_dude, WIN, rage_dude_rect)
     pygame.display.update()
 
 def main():
@@ -26,6 +31,8 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+        character_movement(derp_dude, derp_dude_rect, pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN)
+        character_movement(rage_dude, rage_dude_rect, pygame.K_a, pygame.K_d, pygame.K_w, pygame.K_s)
         draw_update()
 
 main() 
