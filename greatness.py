@@ -31,8 +31,15 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+
+            while event.type == pygame.KEYDOWN:
+                if rage_dude_rect.bottom == 600:
+                    if event.key == pygame.K_w:
+                        gravity(pygame.K_w, rage_dude_rect)
+                        jump(rage_dude_rect)
+                    
         character_movement(derp_dude, derp_dude_rect, pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN)
         character_movement(rage_dude, rage_dude_rect, pygame.K_a, pygame.K_d, pygame.K_w, pygame.K_s)
         draw_update()
-
+        
 main() 
